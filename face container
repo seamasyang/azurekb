@@ -1,0 +1,9 @@
+# prepare your desktop environment
+1. Windows 10 enabled Windows Subsystem for Linux 
+2. Install Docker CE for Windows 10 with Linux container, and check the item General - Expose daemon on tcp://loclahost:2375 without TLS
+3. In ubuntu, take the below [https://dev.to/sebagomez/installing-the-docker-client-on-windows-subsystem-for-linux-ubuntu-3cgd]steps
+
+# prepare azure source
+
+# prepare face container
+
