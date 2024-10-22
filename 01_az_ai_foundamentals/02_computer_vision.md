@@ -1,43 +1,61 @@
 # fundamentals of computer vision
+
 ## images and image processing
+
 ## machine learning for computer vision
+
 ## azure ai version
+
 ## exercise - analyze images in vision studio
+
 ## knowledge check
 
 # fundamentals of facial recognition
-## understand facial analysis
-## get started with facial analysis on az
-## exercise - defect faces in vision studio
-## knowledge check
 
-# fundamentals of optical character recognition 
+## understand facial analysis
+
+## get started with facial analysis on az
+
+## exercise - defect faces in vision studio
+
+# fundamentals of optical character recognition
+
 what: machine can read the text in image using optical character recognition (OCR), the capability for ai to process word in images into machine-readable text. 
+
 how: detect text in images -> convert it into a text-based data format -> stored/printed/other processing or analysis
 why: improve speed and efficiency of work by removing the need for manual data entry
 use cases: note taking, digitizing medical records, scanning checks for bank deposits, etc
+
 ## get started with az ai vision
+
 computer system process written and printed text = intersects (computer vision and NLP)
+
 - computer vsion: "read" the text
 - nlp: make sense if readed text
 OCR is the foundation of procesing text in image, using machine trained learning models to recognize individual shapes (letters, numerals, punctuation, or other elements of text)
 early work on postal service to automatic sorting of mail based on postal codes
+
 ### az ai vision's OCR engine
+
 AZ AI Vision read API (read OCR engine) to extract text from images, PDFS, and TIFF files. 
 read OCR engine use latest recognition models and is optimized for images; consider the number of lines of text, images that include text, and handwriting
 how: OCR engine takes in an image file and identifies bounding boxes, or coordinates, where items are located within an image. 
 return result:
+
 - pages, one for each page of text, including info about the page size and orientation
 - lines, the lines of text on a page
 - words, the words in a line of text, including the bounding box coordinates and text itself
+
 ## get started with vision studio on az
+
 required az resource type
-- az ai vision: use it if don't intent to use any other ai services, or want track utilization and costs for ai vision resource separately 
+
+- az ai vision: use it if don't intent to use any other ai services, or want track utilization and costs for ai vision resource separately
 - az zi service: general resource about az ai services. 
 ways to use az ai vision read api
 - vision studio
 - rest api
-- sdk 
+- sdk
 
 when open vision studio, default resource must be an az ai service resource, rather than az ai vision resource
 ![sample](../imgs/vision_ocr_sample.jpg)
@@ -786,22 +804,28 @@ when open vision studio, default resource must be an az ai service resource, rat
 ```
 
 ## exercise - read text in vision studio
-1. create an az ai service resource
+
+1.create an az ai service resource
+
 - subscription
 - resource group
 - region
 - name (of instance)
 - price tier: standard s0
-2. connect az ai service resource to vision studio
+
+2.connect az ai service resource to vision studio
+
 - https:portal.vision.cognitive.azure.com
-- sign in and same directory 
+- sign in and same directory
 - view all resources under get start with vision
 - select a resource to work
-3. extract text from images in the vision studio 
+
+3.extract text from images in the vision studio
+
 - open vision studio at https:portal.vision.cognitive.azure.com
 - select optical character recognition, and then extract text from images
 - under try it out, acknowledge the resource usage policy by reading and checking the box
 - upload one sample img
-- review what returned (see previous sample)
-4. delete resource group to clean up. 
-## knowledge check
+- review what returned (see previous sample);
+
+4.delete resource group to clean up
