@@ -9,17 +9,113 @@ ignored
 
 ## machine learning for computer vision
 
+the ability to use filter to apply effects to images is useful in image processing tasks, such as image edit software.
+however, the goal of computer version is often to extract meaning, or at least actionable insights, from images.  which requires the creation of machine models that are trained to recognize features on large volumes of existing images.
+
+### convolutional neural networks (CNNs)
+
+**What**
+CNNs uses filters to extract numeric feature maps from images, and then feed the feature values into a deep learning model to generate a label prediction.
+**training process**
+filter kernels are initially defined using randomly generated weight values. then, as the training process progresses, the models predications are evaluated against known labels values, and the filter weights are adjusted to improve accuracy. eventually, the trained model uses the filter weights that beast extract features.
+
+how a cnn for an image classification model works
+
+![cnn](../imgs/az_cv_cnn.png)
+
+1. images with known labels (0: apple, 1: banana, 2: orange) are fed into the network to train the model.
+2. one or more layers of filters is used to extract features from each image as it is fed through the network.
+3. the feature maps are flattened into a single dimensional array of feature values
+4. the feature values are fed into a fully connected neural network
+5. the output layer of the neural network uses a softmax or similar function to produce a result. for example [0.2, 0.5, 0.3]
+
+the output are compared to the actually class label. for example banana should have the value [0, 1, 0]. the difference between the predicted and actual class score to calculate the *loss* in the model, and the weights in the fully connected neural network and the filter kernels in the feature extraction layers are modified to reduce the loss.
+
+the training process repeats over multiple epochs until an optimal set of weights has been learned.
+
+### transformers and multi-modal models
+
+object detection models combine CNN feature extraction layers with the identification of regions of interest in images to locate multiple classes of object in the same image.
+
+#### transforms
+
+transformers work by processing huge volumes of data, and encoding language token as vector-based embeddings. the embeddings are created such that are commonly used in the same context are closer together dimensionally than unrelated words. tokens that are semantically similar are encoded in similar positions, creating a semantic language model that makes it possible to build sophisticated NLP solutions for text analysis, translation, language generation, and other tasks.
+
+#### multi-modal models
+
+success of transformers has led AI researchers to consider whether the same approach would be effective for image data; the result is multi-modal models, in which the model is trained using a large volume of captioned images, with no fixed labels. an image encoder extract features from images based on pixel values and combine them with text embeddings created by a language encoder. the overall model encapsulates relationships between natural language token embeddings and image features.
+
+![multi-modal models](../imgs/az_cv_multi_modal.png)
+
+the Microsoft *Florence* model is just such a model. trained with huge volumes of captioned images from internet, it includes both language encoder and an image encoder. can use Florence model as foundation model for adaptive models that perform
+
+- image classification
+- object detection
+- captioning 
+- tagging
+
+multi-modal models are at the cutting edge of computer vision and AI in general.
+
 ## azure ai version
+
+### az resources for az ai vision service
+
+either of the following resource type
+
+- az ai vision: for use az ai vision only. or track cost separately.
+- az ai service: includes all az ai services. 
+
+### analyzing images with the az si vision service
+submit image to az ai version service to perform a wide range of analytical tasks
+- OCR
+- generating captions and descriptions of images
+- detection of thousands of common objects in images
+- tagging visual features in images
+
+### training custom models
+
+- image classification
+- object detection
 
 ## exercise - analyze images in vision studio
 
-## knowledge check
+[exercise link](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/03-image-analysis.html)
+
+- generate captions
+- tagging
+- tagging images
+- object detection
 
 # fundamentals of facial recognition
 
+*what* to locate and analyze human faces in images or video content
+*use cases*
+
+- security, in building security apps, mobile device os for unlocking devices
+- social media, automatically tag known friends in photographs
+- intelligent monitoring, monitor driver's face to determine if the driver is looking at road, looking at a mobile device, or shows signs of tiredness.
+- advertising, direct ad to an appropriate demographic audience
+- missing persons
+- identity validation - useful at ports of entry kiosks (亭) where a person holds a special entry permit.
+
 ## understand facial analysis
 
+**Face detection** involves identifying regions of an image that contain a human face, typically by returning bounding box coordinates that from a rectangle around the face.
+
+with **face analysis**, facial features can be used to train machine models to return other info.
+![face analysis sample](../imgs/az_cv_facial_analysis.png)
+
+### facial recognition
+
+*what* a further app of facial analysis is to train a machine model to identify known individuals from their facial features; which uses multiple images of an individual to train the model. 
+
 ## get started with facial analysis on az
+
+available ai service to detect and analyze faces
+
+- az ai vision; face detection and some basic face analysis
+- az ai video indexer; detect and identify faces in a video
+- az ai face; pre-built algorithm that can detect, recognize, and analyze faces
 
 ## exercise - defect faces in vision studio
 
