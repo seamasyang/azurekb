@@ -76,10 +76,21 @@ how: multiple iterations. use appropriate algorithm to training a model, evaluat
 
 regression evaluation metrics (ignore)
 
-- mean absolute error (mae)
-- mean squared error (mse)
+- mean absolute error (mae, 平均绝对误差); absolute error for each prediction, and can be summarized for whole validation as MAE. （2，3，3，1，2，3）-> sum/n = 14/6 = 2.33
+- mean squared error (mse,平均平方误差), measures how far off predications are form actual results, treating all mistake equally, however, it might be better to have a model that makes small, consistent mistake instead of one that make fewer but bigger mistakes. one way to focus more on bigger mistakes is to square each error and then find the average of these squared numbers.  （2，3，3，1，2，3）-> square->(4,9,9,1,4,9)->mean-> sum/n -> 6
+*consistent mistake are small and predictable errors*
+*why model consistent mistake is better, because larger model's error can be seen as rare but impactful events*
+
+*[black swan theory](https://en.wikipedia.org/wiki/Black_swan_theory)*
+
 - root mean squared error (rmse)
+calculated by takeing MSE. this process helps convert the squared error values back to the original scale of the data, making it easier to understand the average error in terms of the actual quantities being measured.
+
 - coefficient of determination (r<sup>2</sup>)
+R2 = 1- ∑(y-ŷ)2 ÷ ∑(y-ȳ)2  
+*(ȳ (y-bar) represents the mean of the expected labels of y)*
+*ŷ (y hat)
+the result is a value between 0 and 1 that describes the proportion of variance explained by the model. In simple terms, the closer to 1 this value is, the better the model is fitting the validation data
 
 ## binary classification
 
@@ -131,10 +142,10 @@ one of most commonly used algorithms is k-means clustering, which consists of th
 sine there is no known label with which to compare the predicted cluster assignments, evaluation of a clustering model is based on how well the resulting clusters are separated from one another.
 metrics:
 
-- average distance to cluster centre
-- average distance to other centre
-- maximum distance to cluster centre
-- silhouette
+- average distance to cluster centre: how close, on average, each point in a clsuter is to the cluster's centroid. a **lower** average distance is better.
+- average distance to other centre: how close, on average, each point in a cluster is to the centroids of all other clusters. a **higher** average distance is better.
+- maximum distance to cluster centre. this measures the furthest distance between any point in the cluster and its centroid. a **lower** maximum distance is better.
+- silhouette; a value between -1 and 1 that summarizes the ratio of distance between points in the same cluster and points in different clusters (the **closer** to 1, the better the cluster separation)
 
 ## deep learning
 
@@ -237,12 +248,60 @@ in az ml studio, can:
 
 [exercise link](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/01-machine-learning.html)
 
+## need to further know
+Mean squared error (MSE)
+Sihouette
+
 # ai service on az
+AI services include image recognition, nlp, speech, AI-powered search, and more.
+three principles of az ai services
+
+- prebuild and ready to use
+- accessed through APIs
+- available on azure
+
+### prebuild and ready to use
+why az rebuild
+
+- large amounts of data required to training models
+- massive amount of computing power needed
+- budget to hire specialist programmers 
+
+### az si services are accessed through APIs
+
+- designed to be used in different development environments, with minimal coding.
+- developers can access AI services through REST APIs, client libraries, or integrated them with tolls such as Logic Apps and Power Automate.
+
+### az ai services are available on az
+
+same as other az services, paas, iaas, managed database service.
 
 ## create az ai service resources
 
+two types of AI service resources:
+
+- multi-service; a resource created in az portal that provides access to multiple az ai services with a single key and endpoint. all ai services are billed together.
+- single-service; a resource created provides access to a single az ai service. each has a unique key and point. 
+
 ## use az ai services
+
+once create an az ai service resource, you can build app using the REST API, SDK, or visual studio interface.
+
+### using service studio interfaces
+
+there are different studios, such as vision studio, language studio, speech studio, and the content safety studio.
+
+*Azure AI Studio* combines multiple az ai service into one platform.
+
+### associate the AI service resource
+
+before you can use an ai service resource, you must associate it with the studio. 
 
 ## understand authentication for az ai service
 
+API key is for authentication to protects the privacy of your resource
+Endpoint is to reach the AI service resource instance.
+
 ## exercise - explore az ai services
+
+[exersice link](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)

@@ -1,6 +1,11 @@
 # fundamentals of computer vision
 
+computer vision is one of the core areas of ai, and foucs on creating solutions enable ai application to "see" the world and make sense of it. 
+
 ## images and image processing
+
+Images as pixel arrays (像素数组)
+ignored
 
 ## machine learning for computer vision
 
