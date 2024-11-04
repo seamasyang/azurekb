@@ -117,7 +117,50 @@ available ai service to detect and analyze faces
 - az ai video indexer; detect and identify faces in a video
 - az ai face; pre-built algorithm that can detect, recognize, and analyze faces
 
+### az ai face service
+
+return rectangle coordinates for any human faces found in an image, as well as a series of related attributes.
+
+- accessories
+- blur (模糊), how blurred the face is, how likely the face is to be the main focus of the image
+- exposure (曝光度)
+- glasses
+- head pose, the face's orientation in a 3D space
+- mask
+- noise, refers to visual noise in the image (high ISO -> noise)
+- occlusion (遮挡), determines if there might be objects blocking the face in the image.
+- quality for recognition, a rating of high, medium, or low that reflects if the image is sufficient quality to attempt face recognition on.
+
+### responsible ai use
+
+anyone can use face service to:
+
+- detect the location of faces in an image
+- determine if a person is wearing glasses
+- determine if there is occlusion, blur, noise, or over/under exposure for any of the faces
+- return the head pose coordinates for each face in an image
+
+the limitation access policy requires customers to submit an intake form to access additional:
+
+- face verification, compare faces for similarity
+- face identification, identify named individuals in an image
+- Liveness detection, detect and mitigate instances of recurring content and/or behaviors that indicate a violation of policies.
+
+### az resources for face
+
+- face, specific resource type
+- az ai service, general ai resource
+
+### tips
+
+- image format: jpeg, png, gif, and bmp
+- size, 6 mb or smaller
+- face size range, 36x36 pixels up to 4096x4096
+- other issues, face detection can be impaired by extreme face angles, extreme lighting, and occlusion
+
 ## exercise - defect faces in vision studio
+
+[exercise url](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/04-face.html)
 
 # fundamentals of optical character recognition
 

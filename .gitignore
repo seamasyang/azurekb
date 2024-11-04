@@ -1,2 +1,4 @@
 az_kb_env/
 .DS_Store
+fine_tuned_t5_qa/
+results/
