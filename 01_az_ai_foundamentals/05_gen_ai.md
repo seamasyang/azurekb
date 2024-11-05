@@ -36,12 +36,126 @@ two core components:
 in practice, the specific implementation of the architecture vary; bert use only encoder, GPT use only decoder. 
 
 ### tokenization
+fist step is to decompose the training text into tokens
+
+```
+token id:3041; token:Re
+token id:5372; token:place
+token id:4600; token: `
+token id:22866; token:context
+token id:63; token:`
+token id:416; token: by
+token id:597; token: any
+token id:2420; token: text
+token id:345; token: you
+token id:1549; token:'d
+token id:588; token: like
+token id:0; token:!
+```
 ### embedding
+token do not tell anything about the meaning or relationship of the words.  therefore, comes the contextual vectors (embeddings) for the words.
+
+what? vectors are multi-value numeric representations of info. the vector describes the direction and distance of the path from origin to end.
+
 ### Attention
+*encoder* and *decoder* in a transformer model include multiple layers that from the neural network for the model. 
+attention layer is used in both (encoder and decoder)
+
+what? a technique used to examine *a sequence of text tokens* and try to quantify the *strength of the relationship* between them. in particular, self-attention involves considering how *other tokens* around one particular token *influence that token's meaning*. 
+
+in an encoder, each token is carefully examined in context, and an appropriate encoding is determined for its vector embedding. the vector values are based on the relationship between the token and other tokens with which it frequently appears. 
+
+in a decoder, attention layers are used to *predict the next token* in a sequence. for each token generated, the model has an attention layer that takes into account the sequence of tokens up to that point (该点之前的sequence of tokens). the model consider which of the tokens are the most influential (最具影响力) when considering what the next token should be. 
+
+for example: I **heard** a **dog** **[bark]**
+
+remember that attention layer is working with numeric vector representations of the tokens, not the actual text.  in a decoder, the process starts with a sequence of token embeddings representation the text be to completed. the first thing happens is that another **positional encoding** layer adds a value to each embedding to indicate its position in the sequence:
+
+- [**1**, 5, 6, 2] (I)
+- [**2**, 9, 3, 1] (heard)
+- [**3**, 1, 1, 2] (a)
+- [**4**, 10, 3, 2] (dog)
+
+during training, the goal is to predict the vector for the final token in the sequence based on the preceding tokens. the attention layer assigns a numeric *weight* to each token in the sequence so far. it uses that value to perform a calculation on the weighted vectors that produces an *attention score* the can be used to calculate a possible vector for the next token. in practice, a technique called multi-head attention uses different element of the embeddings to calculate attention scores. a neural network is then used to evaluate all possible tokens to determine the most probable token with which to continue the sequence. the process continue iteratively for each token in the sequence, with output sequence so far being used regressively as the input for the next iteration. 
+
+![alt text](../imgs/transformer_attention.png)
+
+[1,3,1,5] is weight
+[5, 10, 2, 2] (bark) is the most probable token
+middler of the image is a fully connected neural network 
+..
+go the next iteration 
+
+during training, the actual sequence is known. as in any neural network, the predicted value for the token is compared to the actual value of the next vector in the sequence. and then **loss** is calculated. the wights are then incrementally adjusted to reduce the loss and improve the model. 
+
+**prompt** a text input
+**completion** generated a syntactically correct output 
+
+* [translate text with transformer model @ tensorflow.com](https://www.tensorflow.org/text/tutorials/transformer)
 
 ## using language models
-## what are copilots
+org and developer can train their own models from scratch, but in most cases use and existing foundation model, and optionally fine-tune it with custom training data. 
+
+on az, find foundation models in az openai service and in the model catalog.
+
+also support ooen-source models from
+- openai
+- huggingface
+- mistral
+- meta and others
+
+common used az openai models:
+- gpt-3.5-turbo, gpt-4, and gpt-4o; for conversion and message-out language models
+- gpt-4 turbo with vision; analyze images and provide textual response 
+- dall-e; generate image. 
+
+### LLM and SLM 
+- smaller, subject-focus datasets
+- fewer parameters
+- specific conversation topics
+- smaller size provide more options for deployment
+- fine-tuning be less time-consuming and less expensive 
+
+## what are copilots (vs agent ?)
+LLM led to emergence of new ways to interact with app and system through digital copilots. 
+
+what? copilots are generative ai assistants that are integrated into app often as chart interface. they provide contextualized support for common task in those apps. 
+
+why? 
+- biz users can use copilots to boost their productivity and creativity with ai-generated content and automation of tasks. 
+- developer extend copilots by creating plug-in that integrate these copilots into biz process and data, or even create custom copilots to build gen ai capabilities into app and services. 
+
+### levels of copilot adoption
+- use *off-the-shelf* copilots, 
+- *extend* copilots to support biz process or tasks, using your own data to control copilot
+- *build custom* copilots to integrative gen ai into biz apps
+
 ## ms copilot
+
+### web browsing with AI
+what? to answer question, create content, and search web. also built in Edge browser.
+
+### ai assistance for info worker
+**copilot for m365**; generate new doc based on nlp prompt, then refine, summarize, and improve the doc with a few prompts; 
+**power bi**; generate a whole presentation based the contents of a doc or email; then add graphic, reformat slides.
+**outlook**, summarize email, check schedule, find related email/docs to prepare for meeting
+
+### use ai to support biz process
+**dynamics365**; analyze support tickets, research similar issue, find resolutions, etc
+**dynamics365 sales**; find relevant customer and industry info by integrating CRM. quickly review and qualify a lead, generate proposal, setup a customer engagement to close the deal. 
+**dynamics365 supply chain**; handles changes to purchase orders.
+
+### ai assisted data analytics
+**fabric**; generate code they need to analyze, manipulate, and visual in Spark notebooks
+**power bi**; analyze data and then suggest and create appropriate data visualizations form it
+
+### manage it infra and security 
+**m365 defender**; provide assistance for security professionals as the asses, mitigate, and respond to security threats.
+**azure**; integrated into az portal to assistant infra admin
+
+### ai powered software development
+**github** analyzing and explaining code, adding code doc, generating new code based on nlp, and more.
+
 ## consideration for copilot prompts
 ## extending and developing copilots
 ## exercise - explore ms copilot
