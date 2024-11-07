@@ -157,22 +157,196 @@ what? to answer question, create content, and search web. also built in Edge bro
 **github** analyzing and explaining code, adding code doc, generating new code based on nlp, and more.
 
 ## consideration for copilot prompts
-## extending and developing copilots
-## exercise - explore ms copilot
-## knowledge check
+consideration
+- start with a specific goal
+- provide a source to ground the response in a specific scope of info
+- add context to maximize response appropriateness and relevance
+- set clear expectation for response
+- iterate based on previous prompts and response to refine the result 
 
-# introduce to ai studio
+copilot send prompt to llm
+- system message
+- conversation history for the current session, include past prompts and responses.
+- current prompt
+
+## extending and developing copilots
+
+### use copilot studio 
+to develop custom copilots for developer and biz users. a fully managed saas solution. 
+
+### az ai studio
+a paas development portal for developer on llm (also fine-tune model with data)
+
+## exercise - explore ms copilot
+
+
+
+# introduction to ai studio
+
 ## what is az ai studio
+ai studio bring az ai services together in a single unified experience for ai development on az cloud platform
+- model catalog and prompt flow development on az machine learning
+- gen ai model deployment, testing and custom data integration on az openai
+- integration with ai service for speech, vision, language and doc intelligence, and content safety
+
+other features:
+- creating az ai hubs provide collaborative development workspace for data scientist, developers, and others to build AI solutions
+- create project in which assets and code for a specific solution are managed
+- scalable, on-demand compute
+- integration with data sources and other cloud service
+- web-based code dev environments 
+- SKD and CLI libraries  
+
+### what can do ?
+- deploying models
+- deployment and testing gen ai models 
+- integrating data from custom data sources to support RAG
+- using prompt flow to define workflows that integrate model, prompts and custom processing
+- integrate content safety into gen ai solution 
+- extend a gen ai solution with multiple ai capabilities
+
 ## how does az ai studio work
+an az ai hub can host one or more projects, each encapsulates the tools and assets used to create a specific ai solution
+
+### what can do with az ai hub
+- create members and assign them to specific roles
+- create and manage compute instance on which to run experiments, prompt flows, and custom code
+- create and manage connection to resource
+- define policies to manage behavior 
+
+### what can do with a project
+- deploy llm 
+- testing chat model
+- add custom data to augment prompts
+- use prompt flow 
+- evaluate model response to prompts
+- manage indexes and datasets for custom data
+- define content filters to mitigate potentially harmful responses
+- use vs code in browser to create custom code
+- deploy solution as web apps and containerized services
+
+### associated az resources
+- storage account
+- key vault
+- container registry 
+- application insight
+- az openai service 
+
 ## when to use az ai studio
+- create and manage ai projects
+- develop gen ai application
+- explore available ai models 
+- leverage RAG
+- monitor and evaluate ai models
+- integrate with az service
+- build responsibly
+
 ## exercise - explore az ai studio
-## knowledge check
+
 
 # responsible gen ai
+gen ai solution must be implemented responsibly to minimize the risk of harmful content generation 
+*[ms responsible ai standard](https://www.microsoft.com/en-us/ai/responsible-ai)*
+
 ## plan a responsible gen ai solution
-## identify potential harms
-## measure potential harms
-## mitigate potential harms
-## operate a responsible gen ai solution
+four stages to dev and implement a pan for responsible gen ai
+1. identify potential harms relevant to solution 
+2. measure the presence of these harms in the outputs 
+3. mitigate the harms at multiple layers in solution to minimize their presence impact, and ensure transparent communication about potential risks to users
+4. operate the solution responsible by defining and following a deployment and operation readiness plan (部署和运营准备计划)
+
+*closely to NIST AI Risk Management Framework*
+
+## identify potential harms (#1)
+![process](../imgs/az_resp_ai_identify.png)
+### 1. identity potential harms
+harms from 
+- output from ai service, or models
+- any fine-tuning or grounding data to customize outputs
+
+harm types:
+- content (output) is offensive, pejorative(贬损), or discriminatory(歧视)
+- contains factual inaccuracies (事实错误) 
+- encourage or support illegal or unethical behavior 
+
+refs
+[transparency note](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/transparency-note)
+[openai system card for gpt-5](https://cdn.openai.com/papers/gpt-4-system-card.pdf)
+[ms responsible ai impact assessment guide](https://aka.ms/RAIImpactAssessmentGuidePDF)
+[responsible ai impact assessment template](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE5cmFk)
+
+### 2. prioritize the harms
+assess the likelihood of its occurrence and the result level of impact; then prioritize harms
+
+### 3. test and verify the presence of harms
+test solution to verify that the harms occur. and if so, under what conditions
+
+using "red team" testing, in which tester deliberately probes (故意探测) the solution for weakness and attempts. the success of the read team should be documented and reviewed, to help determine the realistic likelihood of harmful output occurring
+
+### 4. doc and share details of harms
+document the details and share with stakeholder.  
+
+## measure potential harms (#2)
+what? 
+create an baseline that quantifies harms produced by solution in given usage scenarios; and then tract improvements against the baseline as you iterative changes in the solution to mitigate the harms
+
+how? 
+1. prepare a diverse input prompts are likely to result in each potential harms which are documented already
+2. submit the prompts to the system and retrieve the generated output. 
+3. apply pre-defined criteria to evaluate the output and categorize it according to the level of potential harms it contains. 
+
+the results of the measurement process should be documented and shared with stakeholders
+
+### manual and automatic testing 
+start manfully testing and evaluating a small test cases; to ensure test result are consistent, and evaluation criteria is sufficiently well-defined (足够明确)
+devise a way to automate testing and measure with a large volume of test cases
+since there automate testing, should periodically perform manual testing to validate new scenarios
+
+## mitigate potential harms (#3)
+mitigation tech can be applied at each of four layer
+### 1. model layer
+- selecting a model that is appropriate for intended solution use. for example, SLM (lower risk) would be appropriate for classification
+- fine-tuning a fundamental model with custom data, responses are more likely relevant and scoped 
+
+### 2. safety system layer
+safety system layer includes *platform-level configuration and capabilities* that help mitigate harm.
+for example, az ai studio content filters: four severity levels (safe, low, medium and high) for four potential harm (hate, sexual, violence, and self-harm)
+
+other include *abuse detection algorithm* to determine if solution is being systematically abused, and alert notification enable a fast response to potential system abuse or harmful behavior.
+
+### 3. metaprompt and grounding layer
+focus on construction of prompts. mitigation tech includes
+- specifying metaprompts (system inputs) that define behavioral parameters 
+- applying prompt engineering to add grounding data to input prompts, maximize a relevant and non-harmful output
+- using RAG to retrieve contextual data from trusted data source and include it in prompts 
+
+### 4. user experience layer
+constrain inputs to specific subjects or types, or applying input and output validation
+doc of a gen ai solution should be appropriately transparent (适当透明) about the capabilities and limitations; doc the model on which it's based; doc any potential harms that may not always be addressed by mitigation measures have put in place. 
+
+## operate a responsible gen ai solution (#4)
+### complete prerelease reviews
+identify various compliance requirements in org and industry, and ensure appropriate teams are given the opportunity to review the system and doc. common compliance review include:
+- legal
+- privacy
+- security
+- accessability; focuses on ensuring that all aspects of user interaction are inclusive and usable by everyone, regardless of their physical or cognitive abilities. (Web Content Accessibility Guidance;  user interface accessibility, content generation accessibility, audio and speech accessibility, testing for accessibility standards )
+
+### release and operate the solution
+a successful release requires some planning and preparation; guidelines: 
+- devise a phased delivery plan, release solution initially to restricted group of users. gather feedback and identify problems before releasing to a wider audience. 
+- create an incident response plan includes estimates of time taken to respond to unanticipated incidents.
+- create a rollback plan defines steps to revert to previous state if an incident occurs
+- implement the capability to immediately block harmful system resonse when they are discovered. 
+- implement a way for users to provide feedback and report issues. 
+- track telemetry data to determine user satisfaction and identity functional gaps or usability challenges. 
+
+### utilize az ai content safety 
+az ai content safety focus on keeping ai and copilots safe from risk:
+- prompt shields; scan for the risk of user input attacks on language models.
+- groundedness detection; detects if text responses are grounded in a user's source content. 
+- protected material detection; scans for known copyright content.
+- custom categories; define a custom categories for any new or emerging patterns 
+
 ## exercise - explore content filters in az ai studio
 ## knowledge check

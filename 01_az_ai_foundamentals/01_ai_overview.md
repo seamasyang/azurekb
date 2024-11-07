@@ -2,20 +2,94 @@
 # fundamental AI concepts
 
 ## introduction to AI
+what? AI is software that imitate human behaviors and capabilities. key workload include:
+- machine leaning; teach a computer model to make predictions and draw conclusions from data
+- computer vision; interpret the world visually through cameras, video, and images
+- nlp; interpret written and spoken language, and respond in kind.
+- doc intelligence; manage, process, and use high volume of data found in forms and docs
+- knowledge mining; extract info from large volumes of often unstructured data to create a searchable knowledge store. 
+- gen ai; create origin content in a variety of formats including natural language, image, code, and more.
 
 ## understand machine learning
 
+### how machine learning works
+data scientist can use all of that data to train machine learning models that can make predictions and inferences based on the relationship they find in the data.
+
+### machine learning in az
+- automated machine learning; create model from data quickly
+- az machine learning designer; a graphic interface enabling development machine learning solutions
+- data metric visualization; analyze and optimize experiments with visualization
+- notebooks; jupyter notebook  
+
 ## understand computer vision
+what: an area of ai that deals with visual processing
+
+capabilities:
+- image classification; classify images based on their contents
+- object detection; classify objects within an image, and identify their location with bounding box
+- semantic segmentation;  individual pixels in the image are classified according to the object to which they belong. 
+- image analysis; extract info from image, including tags that could help catalog the image or even descriptive captions that summarize the scene shown in the image
+- face detection, analysis, and recognition; locates human faces in an image
+- OCR. detect and read text (extract info) from images, scanned docs
+
+az vision service
+- image analysis
+- face
+- ocr
 
 ## understand nlp
+what: understands written and spoken language
+
+tasks:
+- analyze and interpret text in docs, or other tet sources
+- interpret spoken language, and synthesize speech response
+- translate spoken or written phrases between languages
+- interpret commands and determine appropriate actions
+
+services in az
+- ai search
+- ai translator
+- ..
 
 ## understand doc intelligence and knowledge mining
+what: deals with managing, processing and using high volume of a variety of data found in forms and cos.  process contract, health doc, financial forms and more.
+
+### service in az
+document intelligence studio
+
+### knowledge mining in az
+az ai search, a private, enterprise, search solution that has tools for building indexes.  
 
 ## understand gen ai
+what: create origin content. 
+
+### gen ai in az
+az ai studio 
 
 ## challenges and risk with AI
+ai must be used responsibly 
+
+challenge
+- bias can affect results
+- errors nay cause harm; autonomous vehicle failure -> cause a collision
+- data could be exposed; sensitive patient data is stored insecurely
+- solutions may not work for everyone;  home automation assistant provides no audio output for visually impaired users
+- users must trust a complex system; ai makes investment recommendations, what are they based on ?
+- who's liable for ai-driven decision; an innocent person is convicted(定罪) of a crime based on facial recognition, who's responsible?  
 
 ## understand responsible AI
+six principle designed to ensure ai app provide solution to difficult problems without any unintended negative consequences. 
+- fairness; ai system treat all people fairly
+- reliability and safety; ai system should perform reliably and safety. for example, an autonomous vehicle, machines model diagnose patient symptoms and recommends prescriptions.  
+- privacy and security; ai system should secure and respect privacy.  
+- inclusiveness (包容性); ai system should empower everyone and engage people (赋予每个人权力,并让人们参与其中)
+- transparency; ai system should be understandable. users should be made fully aware of purpose of the system, how it works, and what limitations may be expected. 
+- accountability; people should be accountable for AI system.  with designer and develop adhering to governance framework and org principles to ensure ethical and legal compliance.
+
+*
+safety; avoiding harm from accidents or unintended behavior;  reducing risks;  do not bring negative consequences.  
+security; preventing harm from intentional attacks (threats) or malicious action (for example, unauthorized access). 
+*
 
 ## knowledge check
 
